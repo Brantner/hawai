@@ -78,7 +78,8 @@
 
     <div class="datepicker">
       <datepicker [(ngModel)]="dt" [maxMode]="'day'" [showWeeks]="false"
-                  [startingDay]="1" [onlyCurrentMonth]="true"
+                  [startingDay]="1" [onlyCurrentMonth]="true" [formatDay]="'D'"
+                  [customClass]="selectableDates"
       ></datepicker>
     </div>
   </div>
