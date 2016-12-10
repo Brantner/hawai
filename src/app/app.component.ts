@@ -22,9 +22,9 @@ export class AppComponent {
 
   private initCalendar() {
     const startOfMonth = moment().startOf('month');
-    const endOfAccessiblePeriod = moment().isAfter(moment().day('Wednesday'))
-      ? moment().endOf('week').add('1', 'week')
-      : moment().endOf('week');
+    const endOfAccessiblePeriod = moment().isAfter(moment().isoWeekday(3))
+      ? moment().endOf('isoWeek').add('1', 'week')
+      : moment().endOf('isoWeek');
 
 
     let day = startOfMonth;
