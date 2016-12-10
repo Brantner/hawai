@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 @Injectable()
 export class MenuService {
 
-  private static API_URL: string = "/backend/api/user/menu/orderInfo/0/2016-12-5";
+  private static API_URL: string = "/api/user/menu/orderInfo/0/2016-12-5";
 
   createAuthorizationHeader() {
     let headers = new Headers();

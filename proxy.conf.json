@@ -1,5 +1,5 @@
 {
-  "/backend": {
+  "/api": {
     "target": "https://lunchmenu.muranosoft.com",
     "secure": false,
     "logLevel": "debug"
