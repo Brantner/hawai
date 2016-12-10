@@ -1,0 +1,7 @@
+{
+  "/backend": {
+    "target": "https://lunchmenu.muranosoft.com",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

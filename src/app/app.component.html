@@ -28,30 +28,35 @@
       Показать мой заказ
     </button>
 
-    <div class="category-line">
-      <div class="category-image"></div>
-      <div class="category-text">
-        Комбо-обеды
+    <div *ngFor="let category of (categories$ | async)">
+
+      <div class="category-line">
+        <div class="category-image"></div>
+        <div class="category-text">
+          {{category.title}}
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <table class="menu">
+          <tbody>
+          <tr>
+            <td>
+              Вегет-обед: Свекла по-корейски (средней остроты), Суп с фасолью и овощами (вегет), Творог "Домик в
+              деревне"
+              0,2%
+            </td>
+            <td class="menu-weight">670</td>
+            <td class="menu-price">215 ₽</td>
+            <td class="menu-control"><a class="link-unstyled">-</a></td>
+            <td class="hl-ordered">1</td>
+            <td class="menu-control"><a class="link-unstyled">+</a></td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
-    <div class="col-md-12">
-      <table class="menu">
-        <tbody>
-        <tr>
-          <td>
-            Вегет-обед: Свекла по-корейски (средней остроты), Суп с фасолью и овощами (вегет), Творог "Домик в деревне"
-            0,2%
-          </td>
-          <td class="menu-weight">670</td>
-          <td class="menu-price">215 ₽</td>
-          <td class="menu-control"><a class="link-unstyled">-</a></td>
-          <td class="hl-ordered">1</td>
-          <td class="menu-control"><a class="link-unstyled">+</a></td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
 
     <div class="menu-summary col-md-12">
       <table class="menu">

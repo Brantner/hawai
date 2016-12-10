@@ -1,6 +1,8 @@
 import {Component} from "@angular/core";
 import "moment/locale/ru.js";
 import * as moment from "moment";
+import {MenuService, Category} from "./menu.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,15 @@ import * as moment from "moment";
 export class AppComponent {
 
   selectableDates: Array<{date: Date, mode: string, clazz: string}> = [];
+  categories$: Observable<Category[]>;
 
-  constructor() {
+  constructor(private menuService: MenuService) {
+    this.initCalendar();
+
+    this.categories$ = menuService.getTodayMenu();
+  }
+
+  private initCalendar() {
     const startOfMonth = moment().startOf('month');
     const endOfAccessiblePeriod = moment().isAfter(moment().day('Wednesday'))
       ? moment().endOf('week').add('1', 'week')
