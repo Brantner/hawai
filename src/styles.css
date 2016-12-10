@@ -1,1 +1,58 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: 'Segoe UI', Arial;
+}
+
+.well {
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.well .btn-sm {
+  border: none;
+  height: 23px;
+  outline: none;
+}
+
+.well .btn:hover,
+.well .btn:active,
+.well .btn:focus {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+}
+
+.well .btn.disabled,
+.well .btn[disabled],
+.well fieldset[disabled] .btn {
+  opacity: 1;
+  cursor: default;
+}
+
+.well .btn-sm.active {
+  min-width: 100%;
+  background: transparent;
+  box-shadow: none;
+  border: 1px solid #5f1e0d;
+  border-radius: 0;
+}
+
+.well thead tr:first-child .btn-default {
+  font-family: 'Segoe UI Light', 'Segoe UI', Arial;
+  font-weight: 300;
+  font-size: 18pt !important;
+  text-align: center;
+  color: #5f1e0d !important;
+  text-transform: uppercase;
+}
+
+.well thead tr:first-child .btn-default strong {
+  font-weight: 300;
+}
+
+.well thead tr:last-child {
+
+}

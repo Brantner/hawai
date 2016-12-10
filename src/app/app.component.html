@@ -1,3 +1,89 @@
-<h1>
-  {{title}}
-</h1>
+<header></header>
+
+<div class="container">
+  <div class="text-uppercase navigation-bar">
+    <div class="logo">
+      <div class="logo-line1">Murano</div>
+      <div class="logo-line2">menu</div>
+    </div>
+
+    <ul class="nav-menu">
+      <li><a class="link-unstyled" href="#">Меню</a></li>
+    </ul>
+  </div>
+
+  <div class="userdata col-md-12">
+    <div class="col-md-offset-9 col-md-3">
+      <div class="userbalance">
+        1635 ₽
+      </div>
+      <div class="username">
+        Dmitry Zamula
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-9 mainview">
+    <button class="btn-murano">
+      Показать мой заказ
+    </button>
+
+    <div class="category-line">
+      <div class="category-image"></div>
+      <div class="category-text">
+        Комбо-обеды
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <table class="menu">
+        <tbody>
+        <tr>
+          <td>
+            Вегет-обед: Свекла по-корейски (средней остроты), Суп с фасолью и овощами (вегет), Творог "Домик в деревне"
+            0,2%
+          </td>
+          <td class="menu-weight">670</td>
+          <td class="menu-price">215 ₽</td>
+          <td class="menu-control"><a class="link-unstyled">-</a></td>
+          <td class="hl-ordered">1</td>
+          <td class="menu-control"><a class="link-unstyled">+</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="menu-summary col-md-12">
+      <table class="menu">
+        <tbody>
+        <tr>
+          <td></td>
+          <td class="menu-price" style="width: 50px">465 ₽</td>
+          <td class="menu-control"></td>
+          <td class="menu-control"></td>
+          <td class="menu-control"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="text-uppercase today murano-color">
+      <div class="today-weekday ng-binding">Понедельник</div>
+      <div class="today-dayofmonth ng-binding">12</div>
+      <div class="today-month ng-binding">Декабря</div>
+    </div>
+
+
+    <div class="datepicker">
+      <datepicker [(ngModel)]="dt" [maxMode]="'day'" [showWeeks]="false"
+                  [startingDay]="1" [onlyCurrentMonth]="true"
+      ></datepicker>
+    </div>
+  </div>
+
+
+</div>
+
+
