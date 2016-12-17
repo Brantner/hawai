@@ -12,12 +12,29 @@ import {Observable} from "rxjs";
 export class AppComponent {
 
   selectableDates: Array<{date: Date, mode: string, clazz: string}> = [];
+  selectedDate = new Date();
   categories$: Observable<Category[]>;
+  totalCount$: Observable<number>;
 
-  constructor(private menuService: MenuService) {
+  constructor(public menuService: MenuService) {
     this.initCalendar();
+    this.reload();
+  }
 
-    this.categories$ = menuService.getTodayMenu();
+  private reload() {
+    this.categories$ = this.menuService.getTodayMenu();
+    this.totalCount$ = this.categories$
+      .flatMap(categories => categories)
+      .flatMap(category => category.Menus)
+      .reduce((acc, menu) => acc + menu.Price * menu.quantity, 0);
+  }
+
+  addMenuItem(menuId: number) {
+    this.menuService.addMenuItem(menuId).subscribe(() => this.reload());
+  }
+
+  removeMenuItem(menuId: number) {
+    this.menuService.removeMenuItem(menuId).subscribe(() => this.reload());
   }
 
   private initCalendar() {

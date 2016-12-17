@@ -1,5 +1,5 @@
 import {BrowserModule} from "@angular/platform-browser";
-import {NgModule} from "@angular/core";
+import {NgModule, LOCALE_ID} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {HttpModule, JsonpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
@@ -17,7 +17,11 @@ import {MenuService} from "./menu.service";
     JsonpModule,
     DatepickerModule
   ],
-  providers: [MenuService],
+  providers: [
+    MenuService,
+    {provide: LOCALE_ID, useValue: "ru-RU"}
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

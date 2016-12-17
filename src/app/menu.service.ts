@@ -17,6 +17,14 @@ export class MenuService {
   constructor(private http: Http) {
   }
 
+  addMenuItem(menuId: number): Observable<void> {
+    return Observable.of(null);
+  }
+
+  removeMenuItem(menuId: number): Observable<void> {
+    return Observable.of(null);
+  }
+
   getTodayMenu(): Observable<Category[]> {
 
     return this.http.get(MenuService.API_URL, {headers: this.createAuthorizationHeader()})
