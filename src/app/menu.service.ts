@@ -1,16 +1,18 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
 import {Observable} from "rxjs";
+import * as moment from "moment";
+
+const MENU_BASE_URL = "/api/user/menu/orderInfo/0/";
+const DATE_FORMAT = "YYYY-MM-D";
 
 @Injectable()
 export class MenuService {
 
-  private static API_URL: string = "/api/user/menu/orderInfo/0/2016-12-5";
-
   createAuthorizationHeader() {
     let headers = new Headers();
     headers.append('Authorization', 'Basic ' +
-      btoa(""));
+      btoa("dmitry.zamula:Nelenis100"));
     return headers;
   }
 
@@ -25,15 +27,14 @@ export class MenuService {
     return Observable.of(null);
   }
 
-  getTodayMenu(): Observable<Category[]> {
+  getMenuFor(date: Date): Observable<Category[]> {
+    let menuUrl = MENU_BASE_URL + moment(date).format(DATE_FORMAT);
 
-    return this.http.get(MenuService.API_URL, {headers: this.createAuthorizationHeader()})
+    return this.http.get(menuUrl, {headers: this.createAuthorizationHeader()})
       .map(res => {
-        console.log(res);
         return res.json().Categories;
       })
       .catch(err => {
-        console.log(err);
         return Observable.throw(err);
       });
   }

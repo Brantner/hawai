@@ -28,66 +28,10 @@
       Показать мой заказ
     </button>
 
-    <div *ngFor="let category of (categories$ | async)">
+    <app-menu [date]="selectedDate"></app-menu>
 
-      <div class="category-line">
-        <div class="category-image"></div>
-        <div class="category-text">
-          {{category.Title}}
-        </div>
-      </div>
-
-      <div class="col-md-12">
-        <table class="menu">
-          <tbody>
-          <tr *ngFor="let menu of category.Menus">
-            <td>
-              {{menu.Title}}
-            </td>
-            <td class="menu-weight">{{menu.Weight}}</td>
-            <td class="menu-price">{{menu.Price}}</td>
-            <td class="menu-control"><a class="link-unstyled" (click)="menuService.removeMenuItem(menu.Id)">-</a></td>
-            <td class="hl-ordered">{{menu.quantity}}</td>
-            <td class="menu-control"><a class="link-unstyled" (click)="menuService.addMenuItem(menu.Id)">+</a></td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-
-    <div class="menu-summary col-md-12">
-      <table class="menu">
-        <tbody>
-        <tr>
-          <td></td>
-          <td class="menu-price" style="width: 50px">{{totalCount$ | async}}</td>
-          <td class="menu-control"></td>
-          <td class="menu-control"></td>
-          <td class="menu-control"></td>
-        </tr>
-        </tbody>
-      </table>
+    <div class="col-md-3">
+      <app-calendar [(date)]="selectedDate"></app-calendar>
     </div>
   </div>
-
-  <div class="col-md-3">
-    <div class="text-uppercase today murano-color">
-      <div class="today-weekday ng-binding">{{selectedDate | date:'EEEE'}}</div>
-      <div class="today-dayofmonth ng-binding">{{selectedDate | date:'dd'}}</div>
-      <div class="today-month ng-binding">{{selectedDate | date:'MMMM'}}</div>
-    </div>
-
-
-    <div class="datepicker">
-      <datepicker [(ngModel)]="selectedDate" [maxMode]="'day'" [showWeeks]="false"
-                  [startingDay]="1" [onlyCurrentMonth]="true" [formatDay]="'D'"
-                  [customClass]="selectableDates"
-      ></datepicker>
-    </div>
-  </div>
-
-
 </div>
-
-

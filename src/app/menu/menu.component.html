@@ -1,0 +1,46 @@
+<div *ngIf="(categories$ | async)?.length != 0">
+  <div *ngFor="let category of categories$ | async">
+
+    <div class="category-line">
+      <div class="category-image"></div>
+      <div class="category-text">
+        {{category.Title}}
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <table class="menu">
+        <tbody>
+        <tr *ngFor="let menu of category.Menus">
+          <td>
+            {{menu.Title}}
+          </td>
+          <td class="menu-weight">{{menu.Weight}}</td>
+          <td class="menu-price">{{menu.Price}}</td>
+          <td class="menu-control"><a class="link-unstyled" (click)="removeMenuItem(menu.Id)">-</a></td>
+          <td class="hl-ordered">{{menu.quantity}}</td>
+          <td class="menu-control"><a class="link-unstyled" (click)="addMenuItem(menu.Id)">+</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="menu-summary col-md-12">
+    <table class="menu">
+      <tbody>
+      <tr>
+        <td></td>
+        <td class="menu-price" style="width: 50px">{{totalCount$ | async}}</td>
+        <td class="menu-control"></td>
+        <td class="menu-control"></td>
+        <td class="menu-control"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<p *ngIf="(categories$ | async)?.length == 0" class="menu-placeholder-empty ">
+  На этот день в меню нет ни одного блюда!
+</p>

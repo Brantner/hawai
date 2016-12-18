@@ -5,10 +5,14 @@ import {HttpModule, JsonpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {DatepickerModule} from "ng2-bootstrap";
 import {MenuService} from "./menu.service";
+import {MenuComponent} from "./menu/menu.component";
+import {CalendarComponent} from "./calendar/calendar.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
