@@ -1,5 +1,7 @@
 import {Component, ViewEncapsulation} from "@angular/core";
 import "moment/locale/ru.js";
+import {MenuService} from "./menu.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -9,4 +11,9 @@ import "moment/locale/ru.js";
 })
 export class AppComponent {
   selectedDate = new Date();
+  userBalance$: Observable<number>;
+
+  constructor(private menuService: MenuService) {
+    this.userBalance$ = menuService.getBalance().share();
+  }
 }

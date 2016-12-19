@@ -4,39 +4,47 @@ import {Observable} from "rxjs";
 import * as moment from "moment";
 
 const MENU_BASE_URL = "/api/user/menu/orderInfo/0/";
+const BALANCE_BASE_URL = "/api/user/balance/";
+const ADD_ITEM_BASE_URL = "/api/user/buy/0/";
+const REMOVE_ITEM_BASE_URL = "/api/user/cancel/0/";
 const DATE_FORMAT = "YYYY-MM-D";
 
 @Injectable()
 export class MenuService {
 
-  createAuthorizationHeader() {
-    let headers = new Headers();
-    headers.append('Authorization', 'Basic ' +
-      btoa("dmitry.zamula:Nelenis100"));
-    return headers;
-  }
-
   constructor(private http: Http) {
   }
 
   addMenuItem(menuId: number): Observable<void> {
-    return Observable.of(null);
+    let addItemUrl = ADD_ITEM_BASE_URL + menuId;
+    return this.http.post(addItemUrl, undefined, {headers: this.createAuthorizationHeader()})
+      .map(res => undefined)
+      .catch(err => Observable.throw(err));
   }
 
   removeMenuItem(menuId: number): Observable<void> {
-    return Observable.of(null);
+    let removeItemUrl = REMOVE_ITEM_BASE_URL + menuId;
+    return this.http.post(removeItemUrl, undefined, {headers: this.createAuthorizationHeader()})
+      .map(res => undefined)
+      .catch(err => Observable.throw(err));
   }
 
   getMenuFor(date: Date): Observable<Category[]> {
     let menuUrl = MENU_BASE_URL + moment(date).format(DATE_FORMAT);
-
     return this.http.get(menuUrl, {headers: this.createAuthorizationHeader()})
-      .map(res => {
-        return res.json().Categories;
-      })
-      .catch(err => {
-        return Observable.throw(err);
-      });
+      .map(res => res.json().Categories)
+      .catch(err => Observable.throw(err));
+  }
+
+  getBalance() {
+    let balanceUrl = BALANCE_BASE_URL + moment().format(DATE_FORMAT);
+    return this.http.get(balanceUrl, {headers: this.createAuthorizationHeader(), search: "userid=0"})
+      .map(res => res.json().Balance)
+      .catch(err => Observable.throw(err));
+  }
+
+  private createAuthorizationHeader() {
+    return new Headers({Authorization: 'Basic ' + btoa("")});
   }
 }
 
