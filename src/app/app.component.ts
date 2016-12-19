@@ -1,6 +1,6 @@
 import {Component, ViewEncapsulation} from "@angular/core";
 import "moment/locale/ru.js";
-import {MenuService} from "./menu.service";
+import {MenuService, User} from "./menu.service";
 import {Observable} from "rxjs";
 
 @Component({
@@ -11,9 +11,11 @@ import {Observable} from "rxjs";
 })
 export class AppComponent {
   selectedDate = new Date();
+  user$: Observable<User>;
   userBalance$: Observable<number>;
 
   constructor(private menuService: MenuService) {
+    this.user$ = menuService.getCurrentUser().share();
     this.userBalance$ = menuService.getBalance().share();
   }
 }

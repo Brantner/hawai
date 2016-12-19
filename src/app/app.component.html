@@ -14,8 +14,8 @@
 
   <div class="userdata col-md-12">
     <div class="col-md-offset-9 col-md-3">
-      <div class="userbalance">{{userBalance$ | async}}</div>
-      <div class="username">Dmitry Zamula</div>
+      <div class="userbalance">{{userBalance$ | async}} ₽</div>
+      <div class="username">{{(user$ | async)?.Name}}</div>
     </div>
   </div>
 
