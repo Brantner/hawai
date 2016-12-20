@@ -8,6 +8,7 @@ const ADD_ITEM_BASE_URL = "/api/user/buy/0/";
 const REMOVE_ITEM_BASE_URL = "/api/user/cancel/0/";
 const CURRENT_USER_URL = "/api/user/current";
 const BALANCE_BASE_URL = "/api/user/balance/";
+const USER_CALENDAR_BASE_URL = "/api/user/calendar/";
 const DATE_FORMAT = "YYYY-MM-D";
 
 @Injectable()
@@ -42,6 +43,12 @@ export class MenuService {
 
   getCurrentUser(): Observable<User> {
     return this.get(CURRENT_USER_URL)
+      .map(res => res.json())
+      .catch(err => Observable.throw(err));
+  }
+
+  getUserCalendar(date: Date): Observable<UserCalendar> {
+    return this.get(USER_CALENDAR_BASE_URL + moment(date).format(DATE_FORMAT))
       .map(res => res.json())
       .catch(err => Observable.throw(err));
   }
@@ -82,4 +89,13 @@ export interface User {
   Name: string;
   IsAdmin: boolean;
   Company: string;
+}
+
+export interface UserCalendar {
+  [date: string]: UserCalendarDay
+}
+
+export interface UserCalendarDay {
+  Enabled: boolean;
+  HasOrders: boolean;
 }

@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
 import * as moment from "moment";
+import {UserCalendar} from "../menu.service";
 
 @Component({
   selector: 'app-calendar',
@@ -7,28 +8,17 @@ import * as moment from "moment";
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
-  @Input() date;
+  @Input() userCalendar: UserCalendar;
+  @Input() date: Date;
   @Output() dateChange = new EventEmitter<Date>();
 
   selectableDates: Array<{date: Date, mode: string, clazz: string}> = [];
 
   ngOnInit(): void {
-    const startOfMonth = moment().startOf('month');
-    const endOfAccessiblePeriod = moment().isAfter(moment().isoWeekday(3))
-      ? moment().endOf('isoWeek').add('1', 'week')
-      : moment().endOf('isoWeek');
-
-
-    let day = startOfMonth;
-    while (day.isSameOrBefore(endOfAccessiblePeriod)) {
-      if (this.isWeekend(day)) {
-        this.selectableDates.push({date: day.toDate(), mode: 'day', clazz: 'selectable-day'});
-      }
-      day.add('1', 'day');
-    }
-  }
-
-  private isWeekend(day: moment.Moment) {
-    return (day.day() != 6) && (day.day() != 0);
+    this.selectableDates = Object.keys(this.userCalendar)
+      .filter(dateStr => this.userCalendar[dateStr].Enabled)
+      .map(dateStr => {
+        return {date: moment(dateStr).startOf('day').toDate(), mode: "day", clazz: "selectable-day"};
+      });
   }
 }
