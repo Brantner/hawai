@@ -1,6 +1,7 @@
 import {Component, Input, ViewEncapsulation, OnChanges, SimpleChanges} from "@angular/core";
 import {Observable} from "rxjs";
 import {Category, MenuService} from "../menu.service";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-menu',
@@ -11,6 +12,7 @@ import {Category, MenuService} from "../menu.service";
 export class MenuComponent implements OnChanges {
   @Input() date: Date;
 
+  formattedDate: string;
   categories$: Observable<Category[]>;
   totalCount$: Observable<number>;
 
@@ -30,6 +32,7 @@ export class MenuComponent implements OnChanges {
   }
 
   private reload() {
+    this.formattedDate = moment(this.date).format("DD MMMM, dddd");
     this.categories$ = this.menuService.getMenuFor(this.date).share();
     this.totalCount$ = this.categories$
       .flatMap(categories => categories)

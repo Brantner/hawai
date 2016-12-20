@@ -1,16 +1,8 @@
-<div class="text-uppercase today murano-color">
-  <div class="today-weekday ng-binding">{{date | date:'EEEE'}}</div>
-  <div class="today-dayofmonth ng-binding">{{date | date:'dd'}}</div>
-  <div class="today-month ng-binding">{{date | date:'MMMM'}}</div>
-</div>
-
-<div class="datepicker">
-  <datepicker [(ngModel)]="date"
-              (selectionDone)="dateChange.emit($event)"
-              [maxMode]="'day'"
-              [showWeeks]="false"
-              [startingDay]="1"
-              [onlyCurrentMonth]="true"
-              [formatDay]="'D'"
-              [customClass]="selectableDates"></datepicker>
-</div>
+<datepicker [(ngModel)]="date"
+            (selectionDone)="dateChange.emit($event)"
+            [maxMode]="'day'"
+            [showWeeks]="false"
+            [startingDay]="1"
+            [onlyCurrentMonth]="true"
+            [formatDay]="'D'"
+            [customClass]="selectableDates"></datepicker>

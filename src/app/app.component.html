@@ -1,33 +1,19 @@
-<header></header>
-
-<div class="container">
-  <div class="text-uppercase navigation-bar">
-    <div class="logo">
-      <div class="logo-line1">Murano</div>
-      <div class="logo-line2">menu</div>
-    </div>
-
-    <ul class="nav-menu">
-      <li><a class="link-unstyled" href="#">Меню</a></li>
-    </ul>
-  </div>
-
-  <div class="userdata col-md-12">
-    <div class="col-md-offset-9 col-md-3">
-      <div class="userbalance">{{userBalance$ | async}} ₽</div>
-      <div class="username">{{(user$ | async)?.Name}}</div>
+<div class="container" style="width: 1200px;">
+  <div class="row">
+    <div class="col-lg-12">
+      <!--header and navigation-->
+      <h2>Hello, {{(user$ | async)?.Name}}</h2>
+      <h3>Balance: {{userBalance$ | async}} ₽</h3>
     </div>
   </div>
 
-  <div class="col-md-9 mainview">
-    <button class="btn-murano">
-      Показать мой заказ
-    </button>
+  <div class="row">
+    <div class="col-lg-9">
+      <app-menu [date]="selectedDate"></app-menu>
+    </div>
 
-    <app-menu [date]="selectedDate"></app-menu>
-  </div>
-
-  <div class="col-md-3">
-    <app-calendar *ngIf="userCalendar" [userCalendar]="userCalendar" [(date)]="selectedDate"></app-calendar>
+    <div class="col-lg-3">
+      <app-calendar *ngIf="userCalendar" [userCalendar]="userCalendar" [(date)]="selectedDate"></app-calendar>
+    </div>
   </div>
 </div>
