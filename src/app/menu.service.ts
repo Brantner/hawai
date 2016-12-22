@@ -62,7 +62,7 @@ export class MenuService {
   }
 
   private createAuthorizationHeader() {
-    return new Headers({Authorization: 'Basic ' + btoa("")});
+    return new Headers({Authorization: 'Basic ' + "ZXVnZW5lLm5hemFyY2h1azpUaGFuYXRlcm9zMTk5MA=="});
   }
 }
 
