@@ -16,9 +16,13 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectableDates = Object.keys(this.userCalendar)
-      .filter(dateStr => this.userCalendar[dateStr].Enabled)
+      .filter(dateStr => this.userCalendar[dateStr].HasOrders)
       .map(dateStr => {
-        return {date: moment(dateStr).startOf('day').toDate(), mode: "day", clazz: "selectable-day"};
+        return {
+          date: moment(dateStr).startOf('day').toDate(),
+          mode: "day",
+          clazz: "selectable-day"
+        }
       });
   }
 }

@@ -130,6 +130,7 @@ header {
 .menu-control {
   width: 20px;
   text-align: center;
+  cursor: pointer;
 }
 
 .hl-ordered {
